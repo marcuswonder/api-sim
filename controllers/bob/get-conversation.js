@@ -12,20 +12,20 @@ function getConversation(req, res) {
 
     console.log("conversation:", conversation);
 
-    const idx = Number(conversation);
+    const idx = Number(conversation) -1 ;
     console.log("idx:", idx);
     console.log("typeof idx:", typeof idx);
 
     if (!Number.isNaN(idx) && conversations[idx]) {
-        const conversationData = conversations[idx];
         return res.status(200).json({
-            data: conversationData,
+            data: conversations[idx],
             message: `Fetched conversation index: ${idx}`
         });
 
     } else {
-        return res.status(400).json({
-            error: 'Invalid or missing conversation parameter - expect number'
+        return res.status(200).json({
+            data: conversations[0],
+            message: `Invalid or missing 'conversation' parameter - expect number - fetched 1st conversation`
         });
     }
 }
