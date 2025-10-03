@@ -1,8 +1,5 @@
 function pollMentions(req, res) {
-    console.log("req in pollMentions", req);
-    console.log("req.body in pollMentions", req.body);
-    
-
+  res.json({ message: 'poll mentions handler not yet implemented' });
 }
 
-export { pollMentions };
+module.exports = { pollMentions };
