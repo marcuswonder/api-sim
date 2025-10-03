@@ -8,7 +8,15 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.get('/health', (req, res) => {
-  res.send('ok');
+  getHealth(req, res);
+});
+
+app.get('/bob/poll-mentions', (req, res) => {
+  pollMentions(req, res);
+});
+
+app.get('/bob/get-conversation', (req, res) => {
+  getConversation(req, res);
 });
 
 app.listen(port, () => {
