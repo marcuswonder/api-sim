@@ -11,9 +11,10 @@ function getConversation(req, res) {
         null;
 
     console.log("conversation:", conversation);
-    
+
     const idx = Number(conversation);
     console.log("idx:", idx);
+    console.log("typeof idx:", typeof idx);
 
     if (!Number.isNaN(idx) && conversations[idx]) {
         const conversationData = conversations[idx];
