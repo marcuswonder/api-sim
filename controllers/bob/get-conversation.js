@@ -1,11 +1,30 @@
 function getConversation(req, res) {
-    console.log("req.params in getConversation", req.params);
-    console.log("req.body in getConversation", req.body);
-    res.json({ message: `getConversation req.params: ${req.params} || req.body: ${JSON.stringify(req.body)}` });
+    console.log("req.params:", req.params);
+    console.log("req.query:", req.query);
+    console.log("req.body:", req.body);
+    // res.json({ message: getConversation req.params: ${JSON.stringify(req.params)} || req.body: ${JSON.stringify(req.body)} });
 
+    let conversation =
+        req.body.conversation ||
+        req.params.conversation ||
+        req.query.conversation ||
+        null;
+
+    const idx = Number(conversation);
+
+    if (!Number.isNaN(idx) && conversations[idx]) {
+        const conversationData = conversations[idx];
+        return res.status(200).json({
+            data: conversationData,
+            message: `Fetched conversation index: ${idx}`
+        });
+
+    } else {
+        return res.status(400).json({
+            error: 'Invalid or missing conversation parameter - expect number'
+        });
+    }
 }
-
-export { getConversation };
 
 const conversations = [
     {
@@ -91,3 +110,6 @@ const conversations = [
         }
     }
 ];
+
+
+export { getConversation };
