@@ -1,5 +1,5 @@
 function getConversation(req, res) {
-    console.log("req.params:", req.params);
+    console.log("req.params:", JSON.stringify(req.params));
     console.log("req.query:", req.query);
     console.log("req.body:", req.body);
     // res.json({ message: getConversation req.params: ${JSON.stringify(req.params)} || req.body: ${JSON.stringify(req.body)} });
@@ -10,7 +10,10 @@ function getConversation(req, res) {
         req.query.conversation ||
         null;
 
+    console.log("conversation:", conversation);
+    
     const idx = Number(conversation);
+    console.log("idx:", idx);
 
     if (!Number.isNaN(idx) && conversations[idx]) {
         const conversationData = conversations[idx];
